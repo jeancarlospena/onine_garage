@@ -11,7 +11,7 @@ const cookieParser = require('cookie-parser')
 const path = require('path')
 
 const app = express()
-
+app.use(cors())
 app.use(express.json({ limit: '50mb' }));
 
 // looks up if the request has a body
@@ -19,9 +19,9 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.json())
 app.use(cookieParser())
 
-console.log()
 
-app.use(cors())
+
+
 // global middleware
 app.use((req, res, next) => {
   console.log(req.path, req.method)
