@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 import ItemDetails from "../components/ItemDetails";
-import { useItemsContext } from "../hooks/useItemscontext";
+import { useItemsContext } from "../hooks/useItemsContext";
 
 // components
 import ItemForm from "../components/ItemForm";
