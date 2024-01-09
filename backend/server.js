@@ -21,10 +21,7 @@ app.use(cookieParser())
 
 console.log()
 
-app.use(cors({
-  origin: ["https://online-garage.onrender.com"],
-  credentials: true
-}))
+app.use(cors())
 // global middleware
 app.use((req, res, next) => {
   console.log(req.path, req.method)
