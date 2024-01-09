@@ -1,6 +1,6 @@
 import { createContext, useReducer, useEffect, useState } from "react";
-import { useItemsContext } from "../hooks/useItemscontext.jsx";
-import { updateCartDetails } from "../manager/cartManager.jsx";
+// import { useItemsContext } from "../hooks/useItemsContext.jsx";
+// import { updateCartDetails } from "../manager/cartManager.jsx";
 
 export const CartContext = createContext();
 

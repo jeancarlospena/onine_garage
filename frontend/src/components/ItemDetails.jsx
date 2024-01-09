@@ -1,4 +1,4 @@
-import { useItemsContext } from "../hooks/useItemscontext";
+import { useItemsContext } from "../hooks/useItemsContext";
 import { Link } from "react-router-dom";
 
 import { useAuthContext } from "../hooks/useAuthContext";
