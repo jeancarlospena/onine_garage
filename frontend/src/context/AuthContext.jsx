@@ -26,7 +26,8 @@ export const AuthContextProvider = ({ children }) => {
     const initialUser = async () => {
       await axios({
         method: "post",
-        url: `${import.meta.env.VITE_BACKEND_API_URL}/api/user/verify`,
+        url: `/api/user/verify`,
+        // url: `${import.meta.env.VITE_BACKEND_API_URL}/api/user/verify`,
         withCredentials: true,
       }).then(
         (response) => {

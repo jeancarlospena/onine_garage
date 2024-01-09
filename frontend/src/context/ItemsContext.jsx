@@ -30,7 +30,8 @@ export const ItemsContextProvider = ({ children }) => {
   useEffect(() => {
     const fetchItems = async () => {
       const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_API_URL}/api/items/aveilable`
+        `/api/items/aveilable`
+        // `${import.meta.env.VITE_BACKEND_API_URL}/api/items/aveilable`
       );
       const json = await response.json();
       if (response.ok) {
