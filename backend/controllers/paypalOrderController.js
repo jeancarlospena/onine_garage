@@ -153,6 +153,7 @@ const capturePaypalOrder = async (req, res) => {
         shippingName: captureData.purchase_units[0].shipping.name.full_name,
       }
     )
+    const updated = await User.findOneAndUpdate({ _id: userId }, { cart: [] })
     captureData.savedOrderId = updatedTransaction._id
   }
   res.json(captureData);

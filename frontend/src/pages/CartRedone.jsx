@@ -4,6 +4,7 @@ import Paypal from "../components/Paypal.jsx";
 import {
   addItemToCart,
   subtractItemFromCart,
+  updateUsersCart,
 } from "../manager/cartManager.jsx";
 import { Link } from "react-router-dom";
 
