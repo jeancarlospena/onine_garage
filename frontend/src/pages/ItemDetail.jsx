@@ -1,4 +1,4 @@
-import { useItemsContext } from "../hooks/useItemscontext.jsx";
+import { useItemsContext } from "../hooks/useItemsContext.jsx";
 import { useCartContext } from "../hooks/useCartContext.jsx";
 import { getSingleItem } from "../manager/itemsManager.jsx";
 import { addItemToCart } from "../manager/cartManager.jsx";

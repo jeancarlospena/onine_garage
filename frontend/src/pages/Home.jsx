@@ -1,5 +1,5 @@
 // import { useEffect, useState } from "react";
-import { useItemsContext } from "../hooks/useItemscontext.jsx";
+import { useItemsContext } from "../hooks/useItemsContext.jsx";
 import { Link, NavLink } from "react-router-dom";
 
 const Home = () => {
