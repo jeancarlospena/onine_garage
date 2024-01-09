@@ -65,7 +65,7 @@ const updateUsersCart = (cart) => {
     method: "post",
     data: { cart: cart.cartItems },
     withCredentials: true,
-  }).then((response) => console.log(response.data));
+  });
 };
 
 export {
