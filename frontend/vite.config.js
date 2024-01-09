@@ -7,7 +7,7 @@ import react from '@vitejs/plugin-react-swc'
 export default defineConfig({
   server: {
     proxy: {
-      "/api": 'https://dashboard.render.com',
+      "/api": 'https://online-garage.onrender.com',
     },
   },
   plugins: [react()],
