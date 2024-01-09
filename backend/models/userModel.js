@@ -30,6 +30,7 @@ const userSchema = new Schema({
   orders: [
     { id: Schema.Types.ObjectId }
   ],
+  cart: Array,
   workingOrder: String,
   phoneNumber: { type: String, required: true }
 })

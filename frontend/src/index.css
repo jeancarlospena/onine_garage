@@ -20,12 +20,33 @@ time, mark, audio, video {
  
 }
 
-/* body{
-  min-height: 100vh;
+@keyframes board-load{
+  0%{
+    transform: translateY(20%)
+  }
+  100%{
+    transform: translateY(0%)
+  }
+}
+
+@keyframes x-motion{
+  0%{
+    transform: translateY(20%)
+  }
+  100%{
+    transform: translateY(0%)
+  }
+}
+.x-motion{
+  animation: x-motion 200ms ease-out;
+}
+
+body{
+  /* min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  
-} */
+  flex-direction: column; */
+  /* animation: board-load 1000ms; */
+}
 
 .checkout-warning{
   border: 1px solid black;
@@ -186,6 +207,7 @@ form.create{
 }
 
 .img-display-board{
+  animation: board-load 200ms ease-out;
   margin: 15px auto 200px auto;
   width: 100%;
   /* margin-top: 15px;

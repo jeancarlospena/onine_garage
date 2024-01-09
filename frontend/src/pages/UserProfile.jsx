@@ -26,17 +26,17 @@ const UserProfile = () => {
   return (
     <>
       {user && (
-        <>
+        <div className="x-motion">
           <h1 className="title">User Profile</h1>
           <p className="details">
             Name: {user.firstName} {user.lastName}{" "}
           </p>
           <p className="details">Email: {user.email}</p>
           <p className="details">Phone Number: {user.phoneNumber}</p>
-        </>
+        </div>
       )}
       {orders && (
-        <>
+        <div className="x-motion">
           <h1 className="title">Orders Placed</h1>
           {orders.map((order) => (
             <p key={order._id} className="details">
@@ -49,7 +49,7 @@ const UserProfile = () => {
               {order.createdAt.substring(0, 10)}
             </p>
           ))}
-        </>
+        </div>
       )}
     </>
   );

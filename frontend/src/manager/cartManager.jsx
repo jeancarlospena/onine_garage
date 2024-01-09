@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const addItemToCart = (item, cart) => {
   let added = false;
   let maxReached = false;
@@ -57,8 +59,18 @@ const updateCartDetails = (cart) => {
   return cart;
 };
 
-const setLocalCart = (cart) => {
-  localStorage.setItem("cart", JSON.stringify(cart.cartItems));
+const updateUsersCart = (cart) => {
+  axios({
+    url: "/api/user/updatecart",
+    method: "post",
+    data: { cart: cart.cartItems },
+    withCredentials: true,
+  }).then((response) => console.log(response.data));
 };
 
-export { addItemToCart, subtractItemFromCart, updateCartDetails };
+export {
+  addItemToCart,
+  subtractItemFromCart,
+  updateCartDetails,
+  updateUsersCart,
+};

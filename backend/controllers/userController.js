@@ -11,6 +11,14 @@ const generateToken = require('../utils/generateToken.js')
 const verifyUserIdentity = (req, res) => {
   res.json(req.user)
 }
+const updateUserCart = async (req, res) => {
+  const updated = await User.findOneAndUpdate({ _id: req.user._id }, { cart: req.body.cart })
+  if (updated) {
+    res.json({ message: updated })
+  } else {
+    res.json({ message: 'failed update' })
+  }
+}
 
 // login user
 const loginUser = async (req, res) => {
@@ -20,7 +28,7 @@ const loginUser = async (req, res) => {
     const token = generateToken(res, user._id)
     console.log(token)
     res.cookie('pizza', 'token')
-    res.status(200).json({ email: user.email, isAdmin: user.isAdmin, firstName: user.firstName, lastName: user.lastName, phoneNumber: user.phoneNumber, _id: user._id })
+    res.status(200).json({ email: user.email, isAdmin: user.isAdmin, firstName: user.firstName, lastName: user.lastName, phoneNumber: user.phoneNumber, _id: user._id, cart: user.cart })
   } catch (error) {
     res.status(400).json({ error: error.message })
   }
@@ -38,11 +46,11 @@ const signupUser = async (req, res) => {
   try {
     const user = await User.signup(email, password, firstName, lastName, phoneNumber)
     generateToken(res, user._id)
-    res.status(200).json({ email: user.email, firstName: user.firstName, lastName: user.lastName, phoneNumber: user.phoneNumber, _id: user._id })
+    res.status(200).json({ email: user.email, firstName: user.firstName, lastName: user.lastName, phoneNumber: user.phoneNumber, _id: user._id, cart: user.cart })
   } catch (error) {
     res.status(400).json({ error: error.message })
   }
 }
 
 
-module.exports = { signupUser, loginUser, verifyUserIdentity, logoutUser }
+module.exports = { signupUser, loginUser, verifyUserIdentity, logoutUser, updateUserCart }

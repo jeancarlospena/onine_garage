@@ -36,23 +36,26 @@ const CompletedPayment = () => {
     <>
       {order && (
         <>
-          <h1 className="title">Order Payment Processed</h1>
-          <p className="details">Order reference ID: {order._id}</p>
-
-          <div className="order-summary">
-            <h2 className="title">Order Summary:</h2>
-
-            <p className="detals">Subtotal: ${order.cartDetails.cartTotal}</p>
-
+          <div className="x-motion">
+            <h1 className="title">Order Payment Processed</h1>
+            <p className="details">Order reference ID: {order._id}</p>
             <p className="details">
-              Items Total: ${order.cartDetails.itemsTotal}
+              Date Placed: {order.createdAt.substring(0, 10)}
             </p>
-            <p className="details">Tax: ${order.cartDetails.tax}</p>
-            <p className="details">
-              Placed: {order.createdAt.substring(0, 10)}
-            </p>
-            <p className="details">Shipping not included.</p>
-            <p className="details">Aveilable to pickup.</p>
+
+            <div className="order-summary">
+              <h2 className="title">Order Summary:</h2>
+
+              <p className="detals">Subtotal: ${order.cartDetails.cartTotal}</p>
+
+              <p className="details">
+                Items Total: ${order.cartDetails.itemsTotal}
+              </p>
+              <p className="details">Tax: ${order.cartDetails.tax}</p>
+
+              <p className="details">Shipping not included.</p>
+              <p className="details">Aveilable to pickup.</p>
+            </div>
           </div>
           <div className="img-display-board">
             {order &&

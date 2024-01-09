@@ -1,7 +1,8 @@
 import { useItemsContext } from "../hooks/useItemsContext.jsx";
 import { useCartContext } from "../hooks/useCartContext.jsx";
 import { getSingleItem } from "../manager/itemsManager.jsx";
-import { addItemToCart } from "../manager/cartManager.jsx";
+import { useAuthContext } from "../hooks/useAuthContext.jsx";
+import { addItemToCart, updateUsersCart } from "../manager/cartManager.jsx";
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -9,6 +10,7 @@ const ItemDetail = () => {
   const [item, setItem] = useState(null);
   const { cart, dispatch: cartDispatch } = useCartContext();
   const { id: itemId } = useParams();
+  const { user } = useAuthContext();
 
   useEffect(() => {
     getSingleItem(itemId).then(function (value) {
@@ -19,6 +21,9 @@ const ItemDetail = () => {
   const addToCartHandler = () => {
     const results = addItemToCart(item, cart);
     if (results) {
+      if (user) {
+        updateUsersCart(results);
+      }
       cartDispatch({ type: "SET_CART", payload: results });
     }
   };

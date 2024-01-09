@@ -1,6 +1,7 @@
 import { createContext, useReducer, useEffect, useState } from "react";
+import { useAuthContext } from "../hooks/useAuthContext";
 // import { useItemsContext } from "../hooks/useItemsContext.jsx";
-// import { updateCartDetails } from "../manager/cartManager.jsx";
+import { updateCartDetails } from "../manager/cartManager.jsx";
 
 export const CartContext = createContext();
 
@@ -69,35 +70,24 @@ export const CartContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, {
     cart: initialState,
   });
-  useEffect(() => {
-    setIsLoading(false);
-  });
 
   // const { items } = useItemsContext();
+  const { user } = useAuthContext();
 
-  // useEffect(() => {
-  // try {
-  //   let localStorageCart = JSON.parse(localStorage.getItem("cart"));
-  //   if (localStorageCart) {
-  //     let validItems = [];
-  //     items.filter((currItem) => {
-  //       localStorageCart.forEach((currCartItem) => {
-  //         if (currItem._id === currCartItem.item._id) {
-  //           validItems.push({ item: currItem, qty: currCartItem.qty });
-  //         }
-  //       });
-  //     });
-  //     state.cart.cartItems = validItems;
-  //     updateCartDetails(state.cart);
-  //     dispatch("SET_CART");
-  //     setIsLoading(false);
-  //   } else {
-  //     setIsLoading(false);
-  //   }
-  // } catch (error) {
-  //   localStorage.clear();
-  // }
-  // }, [items]);
+  useEffect(() => {
+    try {
+      if (user.cart) {
+        state.cart.cartItems = user.cart;
+        updateCartDetails(state.cart);
+        dispatch("SET_CART");
+        setIsLoading(false);
+      } else {
+        setIsLoading(false);
+      }
+    } catch (error) {
+      // console.log(error);
+    }
+  }, [user]);
 
   return (
     <CartContext.Provider value={{ ...state, dispatch, isLoading }}>

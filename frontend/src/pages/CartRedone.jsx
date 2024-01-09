@@ -18,6 +18,9 @@ const CartRedone = () => {
   const addToCartHandler = (item, cart) => {
     const results = addItemToCart(item, cart);
     if (results) {
+      if (user) {
+        updateUsersCart(results);
+      }
       cartDispatch({ type: "SET_CART", payload: results });
     }
   };
@@ -25,34 +28,35 @@ const CartRedone = () => {
   const subtractFromCartHandler = (item, cart) => {
     const results = subtractItemFromCart(item, cart);
     if (results) {
+      if (user) {
+        updateUsersCart(results);
+      }
       cartDispatch({ type: "SET_CART", payload: results });
     }
   };
 
   return (
     <>
-      {!loadingCart && (
-        <div className="cart">
-          <div className="order-summary">
-            <h2 className="title">ORDER SUMMARY:</h2>
+      {/* {!loadingCart && ( */}
+      <div className="x-motion cart">
+        <div className="order-summary">
+          <h2 className="title">ORDER SUMMARY:</h2>
 
-            <p className="title">Subtotal: ${cart.cartDetails.cartTotal}</p>
+          <p className="title">Subtotal: ${cart.cartDetails.cartTotal}</p>
 
-            <p className="details">
-              Items Total: ${cart.cartDetails.itemsTotal}
-            </p>
-            <p className="details">Tax: ${cart.cartDetails.tax}</p>
-            <p className="details">Shipping not included.</p>
-            <p className="details">
-              Items aveilable for pickup after being payed.
-            </p>
-            {!user && <p className="title">Must be logged in to pay!</p>}
-          </div>
-          {!!cart.cartDetails.cartItemsQty && user && (
-            <Paypal cart={cart.cartItems}></Paypal>
-          )}
+          <p className="details">Items Total: ${cart.cartDetails.itemsTotal}</p>
+          <p className="details">Tax: ${cart.cartDetails.tax}</p>
+          <p className="details">Shipping not included.</p>
+          <p className="details">
+            Items aveilable for pickup after being payed.
+          </p>
+          {!user && <p className="title">Must be logged in to pay!</p>}
         </div>
-      )}
+        {!!cart.cartDetails.cartItemsQty && user && (
+          <Paypal cart={cart.cartItems}></Paypal>
+        )}
+      </div>
+      {/* )} */}
       <div className="img-display-board">
         {cart &&
           cart.cartItems.map((currItem) => {
