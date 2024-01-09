@@ -2,7 +2,7 @@
   "name": "frontend",
   "private": true,
   "version": "0.0.0",
-  "proxy": "https://online-garage.onrender.com",
+  "proxy": "https://dashboard.render.com",
   "type": "module",
   "engines": {
     "node": "18.14.0"
