@@ -11,9 +11,7 @@ const Admin = () => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_API_URL}/api/items`
-      );
+      const response = await fetch(`/api/items`);
       const json = await response.json();
       if (response.ok) {
         dispatch({ type: "SET_ITEMS", payload: json });

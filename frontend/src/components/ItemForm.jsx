@@ -62,17 +62,14 @@ const ItemForm = () => {
       description: descriptionList,
       images: imageFile,
     };
-    const response = await fetch(
-      `${import.meta.env.VITE_BACKEND_API_URL}/api/items`,
-      {
-        method: "POST",
-        body: JSON.stringify(item),
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-      }
-    );
+    const response = await fetch(`/api/items`, {
+      method: "POST",
+      body: JSON.stringify(item),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
     const json = await response.json();
     if (!response.ok) {
       setError(json.error);

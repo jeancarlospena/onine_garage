@@ -34,7 +34,7 @@ const Edit = () => {
     );
   }
 
-  const url = `${import.meta.env.VITE_BACKEND_API_URL}/api/items/${paramsId}`;
+  const url = `/api/items/${paramsId}`;
 
   const fetchInfo = async () => {
     const response = await fetch(url);
@@ -107,17 +107,14 @@ const Edit = () => {
     if (imageFile) {
       item.images = imageFile;
     }
-    const response = await fetch(
-      `${import.meta.env.VITE_BACKEND_API_URL}/api/items/${paramsId}`,
-      {
-        method: "PATCH",
-        body: JSON.stringify(item),
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-      }
-    );
+    const response = await fetch(`/api/items/${paramsId}`, {
+      method: "PATCH",
+      body: JSON.stringify(item),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
 
     const json = await response.json();
     if (!response.ok) {

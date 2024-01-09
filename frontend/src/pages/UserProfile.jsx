@@ -12,9 +12,7 @@ const UserProfile = () => {
       try {
         axios({
           method: "get",
-          url: `${import.meta.env.VITE_BACKEND_API_URL}/api/orders/user/${
-            user._id
-          }`,
+          url: `/api/orders/user/${user._id}`,
           withCredentials: true,
         }).then((response) => {
           setOrders(response.data);

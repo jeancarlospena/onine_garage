@@ -19,7 +19,7 @@ export const useLogout = () => {
     // remove user from cookies
     axios({
       method: "post",
-      url: `${import.meta.env.VITE_BACKEND_API_URL}/api/user/logout`,
+      url: `/api/user/logout`,
       withCredentials: true,
     });
 

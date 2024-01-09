@@ -23,7 +23,7 @@ export const useLogin = () => {
 
     const response = await axios({
       method: "post",
-      url: `${import.meta.env.VITE_BACKEND_API_URL}/api/user/login`,
+      url: `/api/user/login`,
       withCredentials: true,
       data: { email, password },
     });

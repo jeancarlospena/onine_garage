@@ -12,16 +12,13 @@ const ItemDetails = ({ item }) => {
       setError("not logged in");
       return;
     }
-    const response = await fetch(
-      `${import.meta.env.VITE_BACKEND_API_URL}/api/items/` + item._id,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-      }
-    );
+    const response = await fetch(`/api/items/` + item._id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
     const json = await response.json();
     if (response.ok) {
       dispatch({ type: "DELETE_ITEM", payload: json });

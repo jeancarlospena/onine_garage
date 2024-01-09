@@ -13,20 +13,17 @@ export const useSignup = () => {
   const signup = async (email, password, firstName, lastName, phoneNumber) => {
     setIsLoading(true);
     setError(null);
-    const response = await fetch(
-      `${import.meta.env.VITE_BACKEND_API_URL}/api/user/signup`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          password,
-          firstName,
-          lastName,
-          phoneNumber,
-        }),
-      }
-    );
+    const response = await fetch(`/api/user/signup`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email,
+        password,
+        firstName,
+        lastName,
+        phoneNumber,
+      }),
+    });
     const json = await response.json();
 
     if (!response.ok) {

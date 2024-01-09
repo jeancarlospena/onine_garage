@@ -24,11 +24,9 @@ const CompletedPayment = () => {
 
   useEffect(() => {
     try {
-      axios
-        .get(`${import.meta.env.VITE_BACKEND_API_URL}/api/orders/${orderId}`)
-        .then((response) => {
-          setOrder(response.data);
-        });
+      axios.get(`/api/orders/${orderId}`).then((response) => {
+        setOrder(response.data);
+      });
     } catch (error) {
       console.log(error);
     }

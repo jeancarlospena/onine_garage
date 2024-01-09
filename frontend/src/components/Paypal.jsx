@@ -79,49 +79,41 @@ export default function App() {
   const { user, dispatch: dispatchAuth } = useAuthContext();
   const navigate = useNavigate();
   function createOrder() {
-    return fetch(
-      `${import.meta.env.VITE_BACKEND_API_URL}/api/payment/create-paypal-order`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        // use the "body" param to optionally pass additional order information
-        // like product ids and quantities
-        body: JSON.stringify({
-          cart: cart.cartItems,
-          userId: user._id,
-          // cart: [
-          //   {
-          //     id: "YOUR_PRODUCT_ID",
-          //     quantity: "YOUR_PRODUCT_QUANTITY",
-          //   },
-          // ],
-        }),
-      }
-    )
+    return fetch(`/api/payment/create-paypal-order`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      // use the "body" param to optionally pass additional order information
+      // like product ids and quantities
+      body: JSON.stringify({
+        cart: cart.cartItems,
+        userId: user._id,
+        // cart: [
+        //   {
+        //     id: "YOUR_PRODUCT_ID",
+        //     quantity: "YOUR_PRODUCT_QUANTITY",
+        //   },
+        // ],
+      }),
+    })
       .then((response) => response.json())
       .then((order) => {
         return order.id;
       });
   }
   function onApprove(data) {
-    return fetch(
-      `${
-        import.meta.env.VITE_BACKEND_API_URL
-      }/api/payment/capture-paypal-order`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          orderID: data.orderID,
-          cart: cart.cartItems,
-          userId: user._id,
-        }),
-      }
-    )
+    return fetch(`/api/payment/capture-paypal-order`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        orderID: data.orderID,
+        cart: cart.cartItems,
+        userId: user._id,
+      }),
+    })
       .then((response) => response.json())
       .then((orderData) => {
         if (orderData.status === "COMPLETED") {
