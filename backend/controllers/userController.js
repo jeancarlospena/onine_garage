@@ -1,6 +1,6 @@
 const User = require('../models/userModel')
-const jwt = require('jsonwebtoken')
 const generateToken = require('../utils/generateToken.js')
+const tryCatch = require('../utils/tryCatch.js')
 
 // const createToken = (_id) => {
 //   return jwt.sign({ _id }, process.env.SECRET, { expiresIn: '3d' })
@@ -9,16 +9,18 @@ const generateToken = require('../utils/generateToken.js')
 
 
 const verifyUserIdentity = (req, res) => {
-  res.json(req.user)
+  res.status(200).json(req.user)
 }
-const updateUserCart = async (req, res) => {
+
+
+const updateUserCart = tryCatch(async (req, res) => {
   const updated = await User.findOneAndUpdate({ _id: req.user._id }, { cart: req.body.cart })
   if (updated) {
     res.json({ message: updated })
   } else {
-    res.json({ message: 'failed update' })
+    throw new Error("Unable to update user")
   }
-}
+})
 
 // login user
 const loginUser = async (req, res) => {
@@ -41,7 +43,7 @@ const logoutUser = (req, res) => {
 
 // signup user
 
-const signupUser = async (req, res) => {
+const signupUser = tryCatch(async (req, res) => {
   const { email, password, firstName, lastName, phoneNumber } = req.body
   try {
     const user = await User.signup(email, password, firstName, lastName, phoneNumber)
@@ -50,7 +52,7 @@ const signupUser = async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: error.message })
   }
-}
+})
 
 
 module.exports = { signupUser, loginUser, verifyUserIdentity, logoutUser, updateUserCart }

@@ -5,17 +5,24 @@ import { useAuthContext } from "../hooks/useAuthContext.jsx";
 import { addItemToCart, updateUsersCart } from "../manager/cartManager.jsx";
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 const ItemDetail = () => {
   const [item, setItem] = useState(null);
+  const [error, setError] = useState(null);
   const { cart, dispatch: cartDispatch } = useCartContext();
   const { id: itemId } = useParams();
   const { user } = useAuthContext();
 
   useEffect(() => {
-    getSingleItem(itemId).then(function (value) {
-      setItem(value);
-    });
+    axios
+      .get(`/api/items/${itemId}`)
+      .then((value) => {
+        setItem(value.data);
+      })
+      .catch((err) => {
+        setError(err.response.data);
+      });
   }, []);
 
   const addToCartHandler = () => {
@@ -29,6 +36,7 @@ const ItemDetail = () => {
   };
   return (
     <>
+      {error && <p className="error">Sorry: {error}</p>}
       {item && (
         <div className="img-display-board">
           <div key={item._id} className="display-card">

@@ -38,7 +38,7 @@ function App() {
 
                 <Route
                   path="/user/:id"
-                  element={<UserProfile></UserProfile>}
+                  element={user ? <UserProfile /> : <Navigate to="/" />}
                 ></Route>
                 <Route
                   path="/completetransaction/:orderId"
@@ -55,10 +55,6 @@ function App() {
                   }
                 />
                 <Route
-                  path="/redone"
-                  element={<CartRedone></CartRedone>}
-                ></Route>
-                <Route
                   path="/edit/:id"
                   element={
                     user && user.isAdmin ? <Edit /> : <Navigate to="/" />
@@ -73,7 +69,8 @@ function App() {
                   element={user ? <Navigate to="/" /> : <Login />}
                 />
                 <Route path="/cart" element={<CartRedone />} />
-                <Route path="/:id" element={<ItemDetail></ItemDetail>} />
+                <Route path="item/:id" element={<ItemDetail></ItemDetail>} />
+                <Route path="*" element={<Navigate to="/" />} />
               </Routes>
             </div>
           </BrowserRouter>

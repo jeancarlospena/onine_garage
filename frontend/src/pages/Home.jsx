@@ -11,7 +11,7 @@ const Home = () => {
           items.map((i) => {
             return (
               <div key={i._id} className="display-card">
-                <Link to={`/${i._id}`}>
+                <Link to={`item/${i._id}`}>
                   <img src={i.secure_url} alt="" className="img-cropped" />
 
                   <h2 className="title">{i.title}</h2>

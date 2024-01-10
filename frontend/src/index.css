@@ -20,6 +20,16 @@ time, mark, audio, video {
  
 }
 
+.error{
+  margin: 0 auto;
+  color: black;
+  /* font-weight: bold; */
+  border: 1px solid rgb(192, 55, 55);
+  background-color: rgb(247, 211, 211);
+  padding: 20px 15px;
+  border-radius: 10px;
+}
+
 @keyframes board-load{
   0%{
     transform: translateY(20%)

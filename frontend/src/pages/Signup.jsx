@@ -24,11 +24,23 @@ const Signup = () => {
     }
   };
 
+  const phoneNumberHandler = (inputValue) => {
+    if (
+      (inputValue.length === 3 || inputValue.length === 7) &&
+      inputValue.length > phoneNumber.length
+    ) {
+      setPhoneNumber(inputValue + "-");
+    } else {
+      setPhoneNumber(inputValue);
+    }
+  };
+
   return (
     <form className="account-form" onSubmit={handleSubmit}>
       <h3>Create Account</h3>
       <label>Email: </label>
       <input
+        maxLength="50"
         type="email"
         onChange={(e) => setEmail(e.target.value)}
         value={email}
@@ -36,6 +48,7 @@ const Signup = () => {
 
       <label>Password: </label>
       <input
+        maxLength="30"
         type="password"
         onChange={(e) => setPassword(e.target.value)}
         value={password}
@@ -44,6 +57,7 @@ const Signup = () => {
 
       <label>First Name: </label>
       <input
+        maxLength="30"
         type="text"
         onChange={(e) => setFirstName(e.target.value)}
         value={firstName}
@@ -51,6 +65,7 @@ const Signup = () => {
 
       <label>Last Name: </label>
       <input
+        maxLength="30"
         type="text"
         onChange={(e) => setLastName(e.target.value)}
         value={lastName}
@@ -61,7 +76,8 @@ const Signup = () => {
       <input
         type="tel"
         pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-        onChange={(e) => setPhoneNumber(e.target.value)}
+        maxLength="12"
+        onChange={(e) => phoneNumberHandler(e.target.value)}
         value={phoneNumber}
       ></input>
 

@@ -59,13 +59,13 @@ const getItem = async (req, res) => {
   const { id } = req.params
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: 'No such item, unable to edit' })
+    return res.status(404).json('The item you tried to access is not aveilable')
   }
 
   const item = await Item.findById(id)
 
   if (!item) {
-    return res.status(404).json({ error: 'No such item' })
+    return res.status(404).json('The item you tried to access is not aveilable')
   }
 
   res.status(200).json(item)
@@ -118,7 +118,6 @@ const createItem = async (req, res) => {
 
 // delete
 const deleteItem = async (req, res) => {
-  console.log(' we were hit to delete')
   const { id } = req.params
 
   if (!mongoose.Types.ObjectId.isValid(id)) {

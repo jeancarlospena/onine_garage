@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useCartContext } from "../hooks/useCartContext.jsx";
 import { useAuthContext } from "../hooks/useAuthContext.jsx";
 import { Link } from "react-router-dom";
 

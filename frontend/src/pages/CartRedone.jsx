@@ -51,7 +51,9 @@ const CartRedone = () => {
           <p className="details">
             Items aveilable for pickup after being payed.
           </p>
-          {!user && <p className="title">Must be logged in to pay!</p>}
+          {!user && (
+            <p className="title">Must be logged in to make a purchase.</p>
+          )}
         </div>
         {!!cart.cartDetails.cartItemsQty && user && (
           <Paypal cart={cart.cartItems}></Paypal>
@@ -63,7 +65,7 @@ const CartRedone = () => {
           cart.cartItems.map((currItem) => {
             return (
               <div key={currItem.item._id} className="display-card">
-                <Link to={`/${currItem.item._id}`}>
+                <Link to={`/item/${currItem.item._id}`}>
                   <img
                     src={currItem.item.secure_url}
                     alt=""

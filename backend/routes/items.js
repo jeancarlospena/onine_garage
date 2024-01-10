@@ -7,9 +7,8 @@ const {
   deleteItem,
   updateItem,
   getAveilableItems,
-  getFromArray
 } = require('../controllers/itemController')
-const requireAuth = require('../middleware/requireAuth')
+const { requireAuth, requiredAdmin } = require('../middleware/requireAuth')
 
 const router = express.Router()
 
@@ -17,16 +16,14 @@ const router = express.Router()
 
 router.get('/', getItems)
 
-router.post('/cartitems', getFromArray)
-
 router.get('/aveilable', getAveilableItems)
 
 router.get('/:id', getItem)
 
-router.post('/', createItem)
+router.post('/', requireAuth, requiredAdmin, createItem)
 
-router.delete('/:id', deleteItem)
+router.delete('/:id', requireAuth, requiredAdmin, deleteItem)
 
-router.patch('/:id', updateItem)
+router.patch('/:id', requireAuth, requiredAdmin, updateItem)
 
 module.exports = router

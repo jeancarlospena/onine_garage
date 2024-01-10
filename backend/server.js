@@ -9,7 +9,8 @@ const orderRoutes = require('./routes/orders')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const path = require('path')
-
+const errorHandler = require('./middleware/errorHandler.js')
+const tryCatch = require('./utils/tryCatch.js')
 const app = express()
 
 app.use(express.json({ limit: '50mb' }));
@@ -23,14 +24,11 @@ app.use(cors())
 
 
 // global middleware
+// listen for requests
 app.use((req, res, next) => {
   console.log(req.path, req.method)
   next()
 })
-
-// routes
-const Item = require('./models/itemModel')
-const User = require('./models/userModel')
 
 // app.get('/', function (req, res) {
 //   res.send('welcome to the api');
@@ -40,7 +38,18 @@ app.use('/api/user', userRoutes)
 app.use('/api/payment', paymentRoutes)
 app.use('/api/orders', orderRoutes)
 
-// console.log(process.env.NODE_ENV !== 'development')**********
+app.get('/api/error', tryCatch(async (req, res, next) => {
+
+  const user = undefined
+  if (!user) {
+    throw new Error('user not found. try again')
+  } else {
+    res.status(200).json(user)
+  }
+
+
+}))
+
 
 const __dirname2 = path.resolve()
 // set react dist folder
@@ -49,6 +58,8 @@ app.use(express.static(path.join(__dirname2, '/frontend/dist')))
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname2, 'frontend', 'dist', 'index.html'))
 })
+
+app.use(errorHandler)
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
@@ -61,4 +72,4 @@ mongoose.connect(process.env.MONGO_URI)
     console.log(err)
   })
 
-// listen for requests
+

@@ -6,34 +6,24 @@ import axios from "axios";
 
 const CompletedPayment = () => {
   const [order, setOrder] = useState(null);
-  const { user } = useAuthContext();
+  const [error, setError] = useState(null);
   const { orderId } = useParams();
-  // useEffect(
-  //   () => {
-  //     axios
-  //       .get(`${import.meta.env.VITE_BACKEND_API_URL}/api/orders/${orderId}`)
-  //       .then((response) => {
-  //         setOrder(response.data);
-  //       });
-  //   },
-  //   (error) => {
-  //     console.log(error);
-  //   },
-  //   []
-  // );
 
   useEffect(() => {
-    try {
-      axios.get(`/api/orders/${orderId}`).then((response) => {
+    axios
+      .get(`/api/orders/${orderId}`)
+      .then((response) => {
         setOrder(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        setError(err.response.data);
       });
-    } catch (error) {
-      console.log(error);
-    }
   }, []);
 
   return (
     <>
+      {error && <p className="error">Sorry: {error}</p>}
       {order && (
         <>
           <div className="x-motion">
@@ -62,7 +52,7 @@ const CompletedPayment = () => {
               order.cartItems.map((currItem) => {
                 return (
                   <div key={currItem.item._id} className="display-card">
-                    <Link to={`/${currItem.item._id}`}>
+                    <Link to={`/item/${currItem.item._id}`}>
                       <img
                         src={currItem.item.secure_url}
                         alt=""

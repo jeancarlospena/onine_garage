@@ -18,27 +18,15 @@ export const AuthContextProvider = ({ children }) => {
     user: null,
   });
   useEffect(() => {
-    // const user = JSON.parse(localStorage.getItem("user"));
-    // if (user) {
-    //   dispatch({ type: "LOGIN", payload: user });
-    // }
-
     const initialUser = async () => {
       await axios({
         method: "post",
         url: `/api/user/verify`,
         // url: `${import.meta.env.VITE_BACKEND_API_URL}/api/user/verify`,
         withCredentials: true,
-      }).then(
-        (response) => {
-          dispatch({ type: "LOGIN", payload: response.data });
-        },
-        (error) => {}
-      );
-
-      // if (response.status) {
-      //   dispatch({ type: "LOGIN", payload: response.data });
-      // }
+      }).then((response) => {
+        dispatch({ type: "LOGIN", payload: response.data });
+      });
     };
     initialUser();
   }, []);
