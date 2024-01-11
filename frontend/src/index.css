@@ -56,6 +56,7 @@ body{
   display: flex;
   flex-direction: column; */
   /* animation: board-load 1000ms; */
+  background-color: #f4f4f4;
 }
 
 .checkout-warning{
