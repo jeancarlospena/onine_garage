@@ -393,9 +393,9 @@ button:active{
   /* text-decoration: underline; */
 }
 
-.add-item{
-  /* transition-duration: 1s; */
-}
+/* .add-item{
+ 
+} */
 
 .add-item:active{
   /* transition: 0.1s; */
