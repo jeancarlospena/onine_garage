@@ -36,18 +36,20 @@ const Signup = () => {
   };
 
   return (
-    <form className="account-form" onSubmit={handleSubmit}>
-      <h3>Create Account</h3>
-      <label>Email: </label>
+    <form onSubmit={handleSubmit}>
+      <h1 className="title">Create Account</h1>
+      <label>Email</label>
       <input
+        className="input-box"
         maxLength="50"
         type="email"
         onChange={(e) => setEmail(e.target.value)}
         value={email}
       />
 
-      <label>Password: </label>
+      <label>Password</label>
       <input
+        className="input-box"
         maxLength="30"
         type="password"
         onChange={(e) => setPassword(e.target.value)}
@@ -55,25 +57,27 @@ const Signup = () => {
         autoComplete="on"
       />
 
-      <label>First Name: </label>
+      <label>First Name</label>
       <input
+        className="input-box"
         maxLength="30"
         type="text"
         onChange={(e) => setFirstName(e.target.value)}
         value={firstName}
       />
 
-      <label>Last Name: </label>
+      <label>Last Name</label>
       <input
+        className="input-box"
         maxLength="30"
         type="text"
         onChange={(e) => setLastName(e.target.value)}
         value={lastName}
       />
 
-      <label>Phone: </label>
-      <label>Format: 999-999-9999 </label>
+      <label>Phone</label>
       <input
+        className="input-box"
         type="tel"
         pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
         maxLength="12"
@@ -81,7 +85,7 @@ const Signup = () => {
         value={phoneNumber}
       ></input>
 
-      <button className="dropdown" disabled={isLoading}>
+      <button className="form-button" disabled={isLoading}>
         Register
       </button>
       {error && <div className="error">{error}</div>}

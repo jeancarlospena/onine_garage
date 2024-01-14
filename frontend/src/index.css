@@ -73,8 +73,6 @@ header, .left, .right{
   display: flex;
   padding: 15px 0 15px;
   margin-bottom: 15px;
-
-
 }
 header{
   /* background-color: rgb(246, 244, 241); */
@@ -82,7 +80,9 @@ header{
   font-size: 1.2em;
   display: flex;
 
+  align-items: center; /* Align vertical */
 }
+
 .right{
   width: fit-content;
   justify-content: space-between;
@@ -90,7 +90,7 @@ header{
   min-width: 200px;
 }
 .right > a{
-  margin-left: 15px;
+  margin-left: 26px;
 }
 a {
   display: inline-block;
@@ -112,17 +112,20 @@ a:hover, .submit-button:hover{
   
   }
   header, .left{
-    padding: 30px 0 8px;
+    padding: 30px 0 14px;
   }
+
   .right{
-    padding: 10px 0 10px;
+    padding: 0 0 10px;
     /* display: flex; */
-    gap: 10px
+    gap: 45px
   }
   .right > a{
     margin-left: 0;
   }
-  
+  .flash-sale{
+    margin-bottom: 30px;
+  }
 }
 
 .expander{
@@ -138,6 +141,26 @@ a:hover, .submit-button:hover{
   font-size: .85em;
 }
 
+
+
+.flash-sale-text{
+  font-family: "Zeyada", cursive;
+  font-weight: 400;
+  font-style: normal;
+  margin: 0 auto;
+  border-radius: 50%;
+  font-size: 1.5em;
+  list-style-type: none;
+  height: 150px;
+  width: 150px;
+  display: flex;
+  justify-content: center; /* Align horizontal */
+  align-items: center; /* Align vertical */
+  background-color: rgb(197, 248, 208);
+}
+
+
+
 @media screen and (max-width: 800px){
   .right{
     margin-top: 15px;
@@ -145,13 +168,24 @@ a:hover, .submit-button:hover{
     /* min-width: 150px; */
     padding-left: 20px;
     border-left: 1px solid black;
+    gap: 25px;
+  }
+  .flash-sale{
+    margin: 0 auto;
+  }
+  .flash-sale-text{
+    height: 130px;
+    width: 130px;
+    font-size: 1.6em;
   }
   header{
     padding-top: 20px;
     font-size: 1em;
+
   }
   .right > * {
-    margin: 2px;
+    margin: 3px;
+   
   }
   .expander{
     display: block;
@@ -164,6 +198,10 @@ a:hover, .submit-button:hover{
     border: 1px solid black;
     overflow: hidden;
     
+  }
+
+  .flash-sale{
+    margin-bottom: 5px;
   }
 }
 
@@ -189,6 +227,7 @@ form.create{
   aspect-ratio: 1 / 1;
   /* max-height: 100%; */
   max-width: 100%;
+  
 }
 
 
@@ -204,44 +243,24 @@ form.create{
 }
 
 .display-card{
-  /* border: 1px solid white; */
-  /* padding: 10px; */
-  /* max-width: 200px; */
- width: 20%;
- /* max-width: 200px; */
-  
-  /* margin: 0 auto; */
-  /* position: relative; */
+
+  width: 20%;
   display: inline-block;
-  /* padding: 100px; */
-
+  /* flex-grow: 1; */
 }
-
+.padd{
+  margin: 10px
+}
 .img-display-board{
   animation: board-load 200ms ease-out;
   margin: 15px auto 200px auto;
   width: 100%;
-  /* margin-top: 15px;
-  margin-bottom: 200px; */
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
   flex-wrap: wrap;
-  gap: 25px 5%;
-  /* align-content: space-between; */
+  gap: 25px ;
   justify-content: center;
-  /* align-items: start; */
-  /* background-color: #262525; */
 }
-/* .img-display-board{
-  margin: 15px auto 200px auto;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: space-between;
-
-} */
 
 .item-details > button{
   max-width: 100px;
@@ -261,17 +280,29 @@ p.muted{
 
 
 
-@media screen and (max-width: 950px){
+@media screen and (max-width: 1100px){
   .display-card{
     width: 25%
   }
-}
+} 
 
 @media screen and (max-width: 800px){
   .display-card{
-    width: 33.33%
+    width: 40%;
+  }
+  .padd{
+    padding: 5px;
   }
 }
+@media screen and (max-width: 700px){
+  .display-card{
+    width: 40%;
+  }
+  .img-display-board{
+    gap: 5px;
+  }
+}
+
 
 .dropdown-content  > li {
   margin-bottom: 100px
@@ -286,12 +317,11 @@ margin-bottom: 3px;
 
 @media screen and (max-width: 600px) {
   .display-card{
-
     font-size: 0.92em;
   }
-  .img-display-board{
+  /* .img-display-board{
     gap: 18px 10%;
-  }
+  } */
   .dropdown-content  > li {
     margin-bottom: 555px;
   }

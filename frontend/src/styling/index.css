@@ -1,0 +1,69 @@
+/* 
+break points
+1050
+700
+500
+*/
+
+:root {
+  --dark-text: rgb(49, 48, 48);
+  --light-text: rgb(252, 252, 252);
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.container{
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+body{
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: var(--dark-text);
+  background-color: var(--light-text);
+}
+
+.content-divider{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
+.top-content{
+  font-size: 1.1rem;
+}
+
+.global-padding{
+  padding: 7px;
+}
+
+a{
+  cursor: pointer;
+}
+
+@media (max-width: 700px){
+  .global-padding{
+    padding: 5px
+  }
+  .container{
+    width: 95%;
+  }
+  :root{
+    font-size: .88em;
+  }
+}
+
+
+@media(max-width: 500px){
+  .container{
+    width: 95%;
+  }
+
+}

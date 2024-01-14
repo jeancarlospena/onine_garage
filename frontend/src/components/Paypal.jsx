@@ -16,11 +16,11 @@ import {
 const LoadScriptButton = () => {
   const [{ isResolved }, dispatch] = usePayPalScriptReducer();
   return (
-    <div style={{ display: "inline-flex" }}>
+    <div>
       <button
-        className="dropdown"
+        // className="checkout-button"
+        className="regular-button form-button"
         type="button"
-        style={{ display: "block", marginBottom: "20px" }}
         disabled={isResolved}
         onClick={() => {
           dispatch({
@@ -31,48 +31,9 @@ const LoadScriptButton = () => {
       >
         Checkout
       </button>
-
-      {/* <button
-        type="button"
-        style={{
-          display: "block",
-          marginBottom: "20px",
-          marginLeft: "1em",
-        }}
-        onClick={() => {
-          destroySDKScript(getScriptID(SCRIPT_PROVIDER_OPTIONS));
-          dispatch({
-            type: "setLoadingStatus",
-            value: "initial",
-          });
-        }}
-      >
-        Reset
-      </button> */}
     </div>
   );
 };
-
-// Show state
-function PrintLoadingState() {
-  const [{ isInitial, isPending, isResolved, isRejected }] =
-    usePayPalScriptReducer();
-  let status = "no status";
-
-  if (isInitial) {
-    status = "initial";
-  } else if (isPending) {
-    status = "pending";
-  } else if (isResolved) {
-    status = "resolved";
-  } else if (isRejected) {
-    status = "rejected";
-  }
-
-  return <div>Current status: {status}</div>;
-}
-
-// ================================================================
 
 export default function App() {
   const { cart, dispatch: cartDispatch } = useCartContext();
@@ -84,17 +45,9 @@ export default function App() {
       headers: {
         "Content-Type": "application/json",
       },
-      // use the "body" param to optionally pass additional order information
-      // like product ids and quantities
       body: JSON.stringify({
         cart: cart.cartItems,
         userId: user._id,
-        // cart: [
-        //   {
-        //     id: "YOUR_PRODUCT_ID",
-        //     quantity: "YOUR_PRODUCT_QUANTITY",
-        //   },
-        // ],
       }),
     })
       .then((response) => response.json())
@@ -128,7 +81,6 @@ export default function App() {
           cartDispatch({ type: "SET_CART" });
           navigate(`/completetransaction/${orderData.savedOrderId}`);
         }
-        // alert(`Transaction completed by ${name}`);
       });
   }
   return (
@@ -136,9 +88,10 @@ export default function App() {
       deferLoading={true}
       options={{ clientId: import.meta.env.VITE_PAYPAL_CLIENT_ID }}
     >
-      <LoadScriptButton></LoadScriptButton>
-      {/* <PrintLoadingState></PrintLoadingState> */}
-      <PayPalButtons createOrder={createOrder} onApprove={onApprove} />
+      <div className="paypal-buttons-section">
+        <LoadScriptButton></LoadScriptButton>
+        <PayPalButtons createOrder={createOrder} onApprove={onApprove} />
+      </div>
     </PayPalScriptProvider>
   );
 }

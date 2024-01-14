@@ -1,0 +1,51 @@
+/* get rid of autofill shadow */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px rgb(252, 252, 252) inset !important;
+}
+
+
+form{
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  min-width: 300px;
+  margin: 0 auto;
+  margin-top: 60px;
+    
+}
+
+input{
+  background: var(--ligt-text);
+  text-align: center;
+  margin-bottom: 10px;
+  padding-bottom: 1px;
+  border: none;
+  border-bottom: 1px solid var(--dark-text);
+}
+
+.input-box{
+  text-transform: uppercase;
+}
+
+input:focus{
+ outline: none;
+}
+
+label{
+  margin: 35px 0 5px;
+}
+
+@media(max-width: 500px){
+  form{
+    margin-top: 40px;
+  }
+ 
+}

@@ -1,8 +1,9 @@
 const Footer = () => {
   return (
     <footer>
-      <div className="main-container">
-        <p>Contact for questions and shipping service (973) 910-8508</p>
+      <div className="container">
+        <div className="footer-notes">Customer service: (973) 910-8508</div>
+        <div className="footer-notes">© 2024 | All rights reserved</div>
       </div>
     </footer>
   );

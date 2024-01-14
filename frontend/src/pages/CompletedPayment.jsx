@@ -22,55 +22,64 @@ const CompletedPayment = () => {
   }, []);
 
   return (
-    <>
-      {error && <p className="error">Sorry: {error}</p>}
-      {order && (
-        <>
-          <div className="x-motion">
-            <h1 className="title">Order Payment Processed</h1>
-            <p className="details">Order reference ID: {order._id}</p>
-            <p className="details">
-              Date Placed: {order.createdAt.substring(0, 10)}
-            </p>
+    <div className="container">
+      <div className="global-padding">
+        {error && <p className="error">Sorry: {error}</p>}
+        {order && (
+          <>
+            <div className="profile-board">
+              <div className="profile-section">
+                <h1 className="title">Order Summary</h1>
 
-            <div className="order-summary">
-              <h2 className="title">Order Summary:</h2>
+                <p className="detals">
+                  Subtotal: ${order.cartDetails.cartTotal}
+                </p>
 
-              <p className="detals">Subtotal: ${order.cartDetails.cartTotal}</p>
+                <p className="details">
+                  Items Total: ${order.cartDetails.itemsTotal}
+                </p>
+                <p className="details">Tax: ${order.cartDetails.tax}</p>
 
-              <p className="details">
-                Items Total: ${order.cartDetails.itemsTotal}
-              </p>
-              <p className="details">Tax: ${order.cartDetails.tax}</p>
-
-              <p className="details">Shipping not included.</p>
-              <p className="details">Aveilable to pickup.</p>
+                <p className="details">Shipping not included.</p>
+                <p className="details">Aveilable for pickup.</p>
+              </div>
+              <div className="profile-section">
+                <h1 className="title">Order Payment Processed</h1>
+                <p className="details">Order reference ID: {order._id}</p>
+                <p className="details">
+                  Date Placed: {order.createdAt.substring(0, 10)}
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="img-display-board">
-            {order &&
-              order.cartItems.map((currItem) => {
-                return (
-                  <div key={currItem.item._id} className="display-card">
-                    <Link to={`/item/${currItem.item._id}`}>
-                      <img
-                        src={currItem.item.secure_url}
-                        alt=""
-                        className="img-cropped"
-                      />
+            <h1 className="title">Items Purchased</h1>
+            <div className="product-display">
+              {order &&
+                order.cartItems.map((currItem) => {
+                  return (
+                    <div key={currItem.item._id} className="product">
+                      <Link
+                        className="product-link"
+                        to={`/item/${currItem.item._id}`}
+                      >
+                        <img
+                          src={currItem.item.secure_url}
+                          alt=""
+                          className="main-product-img"
+                        />
 
-                      <h2 className="title">{currItem.item.title}</h2>
-                    </Link>
-                    <p className="details">${currItem.item.price}</p>
+                        <h1 className="product-title">{currItem.item.title}</h1>
+                      </Link>
+                      <p className="details">${currItem.item.price}</p>
 
-                    <p className="details">Qty: {currItem.qty}</p>
-                  </div>
-                );
-              })}
-          </div>
-        </>
-      )}
-    </>
+                      <p className="details">Qty: {currItem.qty}</p>
+                    </div>
+                  );
+                })}
+            </div>
+          </>
+        )}
+      </div>
+    </div>
   );
 };
 

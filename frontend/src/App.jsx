@@ -21,62 +21,56 @@ function App() {
 
   return (
     <>
-      <div className="spaced-display">
-        <div className="App main-container">
-          <BrowserRouter>
+      <BrowserRouter>
+        <div className="content-divider">
+          <div className="top-content">
             <Navbar />
-            <div className="pages">
-              <Routes>
-                <Route path="/" element={<Home />} />
+            <Routes>
+              <Route path="/" element={<Home />} />
 
-                <Route
-                  path="/admin"
-                  element={
-                    user && user.isAdmin ? <Admin /> : <Navigate to="/" />
-                  }
-                />
+              <Route
+                path="/admin"
+                element={user && user.isAdmin ? <Admin /> : <Navigate to="/" />}
+              />
 
-                <Route
-                  path="/user/:id"
-                  element={user ? <UserProfile /> : <Navigate to="/" />}
-                ></Route>
-                <Route
-                  path="/completetransaction/:orderId"
-                  element={<CompletedPayment></CompletedPayment>}
-                ></Route>
-                <Route
-                  path="/admin/create"
-                  element={
-                    user && user.isAdmin ? (
-                      <AdminCreateItem />
-                    ) : (
-                      <Navigate to="/" />
-                    )
-                  }
-                />
-                <Route
-                  path="/edit/:id"
-                  element={
-                    user && user.isAdmin ? <Edit /> : <Navigate to="/" />
-                  }
-                />
-                <Route
-                  path="/signup"
-                  element={user ? <Navigate to="/" /> : <Signup />}
-                />
-                <Route
-                  path="/login"
-                  element={user ? <Navigate to="/" /> : <Login />}
-                />
-                <Route path="/cart" element={<CartRedone />} />
-                <Route path="item/:id" element={<ItemDetail></ItemDetail>} />
-                <Route path="*" element={<Navigate to="/" />} />
-              </Routes>
-            </div>
-          </BrowserRouter>
+              <Route
+                path="/user/:id"
+                element={user ? <UserProfile /> : <Navigate to="/" />}
+              ></Route>
+              <Route
+                path="/completetransaction/:orderId"
+                element={<CompletedPayment></CompletedPayment>}
+              ></Route>
+              <Route
+                path="/admin/create"
+                element={
+                  user && user.isAdmin ? (
+                    <AdminCreateItem />
+                  ) : (
+                    <Navigate to="/" />
+                  )
+                }
+              />
+              <Route
+                path="/edit/:id"
+                element={user && user.isAdmin ? <Edit /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/signup"
+                element={user ? <Navigate to="/" /> : <Signup />}
+              />
+              <Route
+                path="/login"
+                element={user ? <Navigate to="/" /> : <Login />}
+              />
+              <Route path="/cart" element={<CartRedone />} />
+              <Route path="item/:id" element={<ItemDetail></ItemDetail>} />
+              <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
+      </BrowserRouter>
     </>
   );
 }

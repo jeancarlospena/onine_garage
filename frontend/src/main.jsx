@@ -1,7 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import "./index.css";
+import "./styling/index.css";
+import "./styling/header.css";
+import "./styling/productgrid.css";
+import "./styling/footer.css";
+import "./styling/form.css";
+import "./styling/profile.css";
+import "./styling/buttons.css";
+import "./styling/cart.css";
+// import "./index.css";
 
 import axios from "axios";
 
