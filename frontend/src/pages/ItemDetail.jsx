@@ -42,11 +42,14 @@ const ItemDetail = () => {
           <div className="product-display">
             <div className="global-padding">
               <div key={item._id} className="product">
-                <img
-                  src={item.secure_url}
-                  alt=""
-                  className="main-product-img"
-                />
+                <div className="hide-overflow">
+                  {" "}
+                  <img
+                    src={item.secure_url}
+                    alt=""
+                    className="main-product-img"
+                  />
+                </div>
 
                 <h1 className="prodict-title">{item.title}</h1>
                 <div className="global-padding">

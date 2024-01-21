@@ -61,12 +61,13 @@ const CompletedPayment = () => {
                         className="product-link"
                         to={`/item/${currItem.item._id}`}
                       >
-                        <img
-                          src={currItem.item.secure_url}
-                          alt=""
-                          className="main-product-img"
-                        />
-
+                        <div className="hide-overflow">
+                          <img
+                            src={currItem.item.secure_url}
+                            alt=""
+                            className="main-product-img"
+                          />
+                        </div>
                         <h1 className="product-title">{currItem.item.title}</h1>
                       </Link>
                       <p className="details">${currItem.item.price}</p>

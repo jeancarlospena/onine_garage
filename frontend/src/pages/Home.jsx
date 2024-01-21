@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <div className="container">
       <div className="global-padding">
-        <h1>All Items For Sale</h1>
+        <h1>For Sale</h1>
       </div>
       <div className="products-display">
         {!isLoading &&
@@ -17,11 +17,14 @@ const Home = () => {
               <div key={item._id} className="product">
                 <Link to={`item/${item._id}`} className="product-link">
                   <div className="global-padding">
-                    <img
-                      className="main-product-img"
-                      src={item.secure_url}
-                      alt=""
-                    />
+                    <div className="hide-overflow">
+                      <img
+                        className=".hover01 main-product-img"
+                        src={item.secure_url}
+                        alt=""
+                      />
+                    </div>
+
                     <h1 className="product-title">{item.title}</h1>
                   </div>
                 </Link>

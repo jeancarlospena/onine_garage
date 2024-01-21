@@ -19,6 +19,11 @@ const Navbar = () => {
   };
   return (
     <header>
+      <div className="top-stripe">
+        <p className="stripe-text">
+          all sales are final. free shipping on orders over $100.
+        </p>
+      </div>
       <div className="container">
         <div className="global-padding">
           <div className="header">

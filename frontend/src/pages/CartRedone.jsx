@@ -77,11 +77,13 @@ const CartRedone = () => {
                       className="product-link"
                     >
                       <div className="global-padding">
-                        <img
-                          className="main-product-img"
-                          src={currItem.item.secure_url}
-                          alt=""
-                        />
+                        <div className="hide-overflow">
+                          <img
+                            className="main-product-img"
+                            src={currItem.item.secure_url}
+                            alt=""
+                          />
+                        </div>
                         <h1 className="product-title">{currItem.item.title}</h1>
                       </div>
                     </Link>

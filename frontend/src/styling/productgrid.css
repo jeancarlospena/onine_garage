@@ -27,9 +27,7 @@
   text-decoration: none;
 }
 
-.product-info{
-  /* margin: 0px; */
-}
+
 
 .product-info + .product-info{
   margin-top: 5px;
@@ -57,3 +55,17 @@
   }
 }
 
+
+.hide-overflow{
+  overflow: hidden;
+}
+img {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+img:hover  {
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}

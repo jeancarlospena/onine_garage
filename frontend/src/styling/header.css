@@ -3,6 +3,23 @@
   justify-content: space-between;
   flex-direction: row;
   padding: 30px 0 0;
+  letter-spacing: 3px;
+}
+
+.top-stripe{
+  background-color: black;
+  align-self: center;
+  color: rgb(235, 229, 229);
+  padding: 15px;
+ text-align: center;
+}
+
+.stripe-text{
+ text-transform: uppercase;
+ letter-spacing: 2px;
+ font-size: .85rem;
+  margin: 0;
+  padding: 0;
 }
 
 .navigate{
@@ -11,7 +28,7 @@
 }
 
 .nav-link + .nav-link{
-  margin-left: 25px;
+  margin-left: 30px;
 }
 
 .nav-link{
@@ -26,7 +43,7 @@
 
 .nav-link::before {
   transition: 300ms;
-  height: 1px;
+  height: 2px;
   content: "";
   position: absolute;
   background-color: var(--dark-text);
@@ -51,4 +68,7 @@
   .nav-link + .nav-link{
     margin-left: 18px;
   }
+  .stripe-text{
+    font-size: .7rem;
+   }
 }
